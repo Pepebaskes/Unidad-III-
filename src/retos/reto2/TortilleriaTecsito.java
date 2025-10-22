@@ -42,9 +42,7 @@ public class TortilleriaTecsito {
                        }
                        siguiente.vieneAtras = personaNueva;
                     }
-
                     imprimirLista(inicioFila);
-
                     break;
 
                 case 2:
@@ -72,6 +70,16 @@ public class TortilleriaTecsito {
                         else atrasBuscado.vieneAtras = buscado.vieneAtras;
 
                     }
+
+                case 4:
+                    System.out.println("Los clientes que quedarón sin atender son: ");
+                    int contador = 0;
+                    while(inicioFila != null){
+                        contador ++;
+                        inicioFila = inicioFila.vieneAtras;
+                    }
+                    System.out.println("Las personas sin atender son: "+contador);
+
 
             }
         }

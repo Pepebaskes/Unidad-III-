@@ -21,6 +21,8 @@ public class TortilleriaTecsito {
                     2...Atender Cliente
                     3...Cliente sale de la fila
                     4...Terminar servicio 
+                    5...Imprimir lista al reves
+                    6...Salir
                     Escoga una opción: 
                     """;
             System.out.println(menu);
@@ -29,18 +31,34 @@ public class TortilleriaTecsito {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Dame un nombre: ");
-                    String nombre = leer.nextLine();
-                    Persona personaNueva = new Persona();
-                    personaNueva.nombre = nombre;
-                    if (inicioFila == null) {
-                        inicioFila = personaNueva;
-                    } else {
-                       Persona siguiente = inicioFila;
-                       while(siguiente.vieneAtras != null){
-                           siguiente = siguiente.vieneAtras;
-                       }
-                       siguiente.vieneAtras = personaNueva;
+
+                    System.out.println("Quieres agregarlo al inicio o al final de la lista?: ");
+                    String inicio=leer.nextLine();
+                    if(inicio.equals("inicio")){
+                        System.out.println("Dame un nombre: ");
+                        String nombreInicio=leer.nextLine();
+                        Persona personaNueva = new Persona();
+                        personaNueva.nombre = nombreInicio;
+
+                            personaNueva.vieneAtras = inicioFila;
+                            inicioFila = personaNueva;
+
+                    }
+                    else {
+                        System.out.println("Dame un nombre: ");
+                        String nombre = leer.nextLine();
+                        Persona personaNueva = new Persona();
+                        personaNueva.nombre = nombre;
+                        if (inicioFila == null) {
+                            inicioFila = personaNueva;
+                        } else {
+                            Persona siguiente = inicioFila;
+                            while (siguiente.vieneAtras != null) {
+                                siguiente = siguiente.vieneAtras;
+                            }
+                            siguiente.vieneAtras = personaNueva;
+                        }
+
                     }
                     imprimirLista(inicioFila);
                     break;
@@ -70,6 +88,7 @@ public class TortilleriaTecsito {
                         else atrasBuscado.vieneAtras = buscado.vieneAtras;
 
                     }
+                    break;
 
                 case 4:
                     System.out.println("Los clientes que quedarón sin atender son: ");
@@ -79,16 +98,30 @@ public class TortilleriaTecsito {
                         inicioFila = inicioFila.vieneAtras;
                     }
                     System.out.println("Las personas sin atender son: "+contador);
-
+                        break;
+                case 5:
+                    System.out.println("Lista al reves");
+                    imprimirListaReves(inicioFila);
+                    break;
+                case 6:
+                    System.out.println("Salir de la fila");
+                    break;
 
             }
         }
-        while (opcion != 4);
+        while (opcion != 5);
     }
     public static void imprimirLista(Persona persona){
         if(persona != null){
             System.out.println(persona.nombre);
             imprimirLista(persona.vieneAtras);
+        }
+    }
+    public static void imprimirListaReves(Persona persona){
+        if(persona != null){
+            imprimirListaReves(persona.vieneAtras);
+            System.out.println(persona.nombre);
+
         }
     }
 }

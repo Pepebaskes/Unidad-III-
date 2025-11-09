@@ -9,25 +9,29 @@ public class ColaDatos {
         size = 0;
     }
 
-    // Agregar (offer): entra por el "inicio" visual (jTextField1)
-    public void offer(String dato) {
-        if (dato == null || dato.isEmpty()) return;
 
-        // si aún no está llena, aumentamos tamaño
-        if (size < cola.length) {
-            size++;
-        }
+// metodo offer desde el primer label
+public boolean offer(String dato) {
+    if (dato == null || dato.isEmpty()) return false;
 
-        // desplazamos los elementos hacia la derecha
-        for (int i = size - 1; i > 0; i--) {
-            cola[i] = cola[i - 1];
-        }
-
-        // el nuevo siempre va a la posición 0 (jTextField1)
-        cola[0] = dato;
+ //si esta llena la cola no agrega nada
+    if (size >= cola.length) {
+        return false; // devolvemos false indicando que no se pudo agregar
     }
 
-    // Sacar (poll): sale el más viejo (el que está más a la derecha)
+    // desplazamos los elementos hacia la derecha
+    for (int i = size; i > 0; i--) {
+        cola[i] = cola[i - 1];
+    }
+
+    // el nuevo siempre va a la posición 0 (jTextField1)
+    cola[0] = dato;
+    size++;
+    return true; // éxito
+}
+
+
+    // saca el primero que ingrese ne orden
     public String poll() {
         if (size == 0) return null;
 
@@ -37,13 +41,13 @@ public class ColaDatos {
         return eliminado;
     }
 
-    // Ver el siguiente en salir (peek)
+    // ve el siguiente en salir
     public String peek() {
         if (size == 0) return null;
         return cola[size - 1]; // el más viejo
     }
 
-    // Para que la ventana pueda pintar los textfields
+    // 
     public String[] getEstado() {
         return cola.clone();
     }

@@ -52,7 +52,7 @@
                               <Component id="jTextField4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="jTextField5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="39" max="32767" attributes="0"/>
+                              <EmptySpace pref="30" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -73,10 +73,6 @@
                       <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="lblFin" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
@@ -85,9 +81,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-              <Component id="lblFin" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -117,30 +111,45 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
         <Property name="enabled" type="boolean" value="false"/>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[80, 25]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField2">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField2"/>
         <Property name="enabled" type="boolean" value="false"/>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[80, 25]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField3">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField3"/>
         <Property name="enabled" type="boolean" value="false"/>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[80, 25]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField4">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField4"/>
         <Property name="enabled" type="boolean" value="false"/>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[80, 25]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField5">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField5"/>
         <Property name="enabled" type="boolean" value="false"/>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[80, 25]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnOffer">
@@ -180,11 +189,6 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inicio"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblFin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Fin"/>
       </Properties>
     </Component>
   </SubComponents>

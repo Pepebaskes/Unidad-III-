@@ -24,24 +24,24 @@ public class Index extends javax.swing.JFrame {
 
     }
      private void inicializarCola() {
-        // Arreglo con los 5 textfields que representan la cola
-        campos = new JTextField[]{
-            jTextField1, jTextField2, jTextField3, jTextField4, jTextField5
-        };
+         // Arreglo con los 5 textfields que representan la cola
+    campos = new javax.swing.JTextField[]{
+        jTextField1, jTextField2, jTextField3, jTextField4, jTextField5
+    };
 
-        // Configuramos tamaño y que solo muestren datos (no editar)
-        for (JTextField campo : campos) {
-            campo.setEditable(false);
-            campo.setColumns(8); // para que NO se vean chiquitos
-            campo.setHorizontalAlignment(JTextField.CENTER);
-            campo.setText("");
-        }
+    // Configuramos que solo muestren datos (no editar)
+    for (javax.swing.JTextField campo : campos) {
+        campo.setEditable(false);
+         campo.setColumns(8);
+        campo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campo.setText("");
+    }
 
-        // Creamos la cola con capacidad 5
-        cola = new ColaDatos(campos.length);
+    // Creamos la cola con capacidad 5
+    cola = new ColaDatos(campos.length);
 
-        // Pintamos estado inicial
-        actualizarCampos();
+    // Pintamos estado inicial
+    actualizarCampos();
     }
      
      private void actualizarCampos() {
@@ -72,24 +72,28 @@ public class Index extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lblFin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextField1.setText("jTextField1");
         jTextField1.setEnabled(false);
+        jTextField1.setMinimumSize(new java.awt.Dimension(80, 25));
 
         jTextField2.setText("jTextField2");
         jTextField2.setEnabled(false);
+        jTextField2.setMinimumSize(new java.awt.Dimension(80, 25));
 
         jTextField3.setText("jTextField3");
         jTextField3.setEnabled(false);
+        jTextField3.setMinimumSize(new java.awt.Dimension(80, 25));
 
         jTextField4.setText("jTextField4");
         jTextField4.setEnabled(false);
+        jTextField4.setMinimumSize(new java.awt.Dimension(80, 25));
 
         jTextField5.setText("jTextField5");
         jTextField5.setEnabled(false);
+        jTextField5.setMinimumSize(new java.awt.Dimension(80, 25));
 
         btnOffer.setText("Offer");
         btnOffer.addActionListener(new java.awt.event.ActionListener() {
@@ -116,8 +120,6 @@ public class Index extends javax.swing.JFrame {
         jLabel1.setText("Interaccion con los datos");
 
         jLabel2.setText("Inicio");
-
-        lblFin.setText("Fin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,7 +150,7 @@ public class Index extends javax.swing.JFrame {
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50)
                                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(39, Short.MAX_VALUE))
+                                .addContainerGap(30, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnPeek)
@@ -160,18 +162,13 @@ public class Index extends javax.swing.JFrame {
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(lblFin)))
+                        .addComponent(jLabel1)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(lblFin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,18 +196,23 @@ public class Index extends javax.swing.JFrame {
         // boton offer
        String nombre = jTextField6.getText().trim();
 
-        if (nombre.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingresa un dato para agregar a la cola.");
-            return;
-        }
+    if (nombre.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Ingresa un dato para agregar a la cola.");
+        return;
+    }
 
-        cola.offer(nombre);
+  //revisa si estuvo lleno o no
+    boolean agregado = cola.offer(nombre);
+
+    if (!agregado) {
+        JOptionPane.showMessageDialog(this,
+            "La cola ya está llena. No se pueden agregar más elementos.",
+            "Advertencia", JOptionPane.WARNING_MESSAGE);
+    } else {
         jTextField6.setText("");
         actualizarCampos();
-
-        // Opcional: ver la cola en consola
         System.out.println(java.util.Arrays.toString(cola.getEstado()));
-        
+    }
     }//GEN-LAST:event_btnOfferActionPerformed
 
     private void btnPollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPollActionPerformed
@@ -286,6 +288,5 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JLabel lblFin;
     // End of variables declaration//GEN-END:variables
 }

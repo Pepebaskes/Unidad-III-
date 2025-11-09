@@ -1,4 +1,9 @@
 package retos.reto2;
+/**
+ * Este programa es la version en bruto del programa que hicimos como actividad de la fila de tortillas
+ * en vez de usar array list o linked list, llamamos objetos y punteros.
+ * Hasta este punto el programa ya da la opcion de agregar al inicio, a la vez imprime al revez desde el case 5
+ */
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +19,16 @@ public class TortilleriaTecsito {
 
         List<String> fila = new ArrayList<>();
 
-
+        //menu
         do {
             String menu = """
                     1...Agregar cliente 
                     2...Atender Cliente
                     3...Cliente sale de la fila
-                    4...Terminar servicio 
-                    5...Imprimir lista al reves
-                    6...Salir
+                    4...Imprimir lista al revés
+                    5...Imprimir lista en orden
+                    6...Terminar servicio
+                    
                     Escoga una opción: 
                     """;
             System.out.println(menu);
@@ -32,26 +38,26 @@ public class TortilleriaTecsito {
             switch (opcion) {
                 case 1:
 
-                    System.out.println("Quieres agregarlo al inicio o al final de la lista?: ");
+                    System.out.println("Quieres agregarlo al inicio o al final de la lista?: "); //le decimos que si quiere ser al inicio o al final el registro, y guardamos
                     String inicio=leer.nextLine();
-                    if(inicio.equals("inicio")){
+
+                    if(inicio.equals("inicio")){   //este es el caso en el que el usuario indique que quiere al inicio el nuevo registro
                         System.out.println("Dame un nombre: ");
                         String nombreInicio=leer.nextLine();
-                        Persona personaNueva = new Persona();
-                        personaNueva.nombre = nombreInicio;
-
-                            personaNueva.vieneAtras = inicioFila;
-                            inicioFila = personaNueva;
+                        Persona personaNueva = new Persona();  // de la clase Persona hacemos un nuevo objeto llamada persona nueva
+                        personaNueva.nombre = nombreInicio; //Ese objeto, con el atribuyto de nombre de su clase, lo apuntamos al inicio de la fila
+                        personaNueva.vieneAtras = inicioFila; //la persona nueva, si viene atras aun asi la vamos apuntar al inico de la fila
+                        inicioFila = personaNueva;
 
                     }
                     else {
-                        System.out.println("Dame un nombre: ");
+                        System.out.println("Dame un nombre: "); //de lo contrario seguimos agregando al final de la fila como ya lo teniamos
                         String nombre = leer.nextLine();
                         Persona personaNueva = new Persona();
                         personaNueva.nombre = nombre;
-                        if (inicioFila == null) {
+                        if (inicioFila == null) { //si el inicio de la fila esta vacio entonces inicio fila es la persona nueva
                             inicioFila = personaNueva;
-                        } else {
+                        } else { // de lo contrario, apuntamos al inico de la fila pero entramos al while
                             Persona siguiente = inicioFila;
                             while (siguiente.vieneAtras != null) {
                                 siguiente = siguiente.vieneAtras;
@@ -84,32 +90,41 @@ public class TortilleriaTecsito {
                         //caso 1:
                         if(atrasBuscado == null){
                             inicioFila = inicioFila.vieneAtras;
-                        }else if (buscado.vieneAtras == null) atrasBuscado.vieneAtras = null;
+                        }else if (buscado.vieneAtras == null) atrasBuscado.vieneAtras = null; //aqui desenlaza segun le indiquemos al objeto de su posicion
                         else atrasBuscado.vieneAtras = buscado.vieneAtras;
 
                     }
+                    imprimirLista(inicioFila);
                     break;
 
+
                 case 4:
-                    System.out.println("Los clientes que quedarón sin atender son: ");
+                    //imprimios al reves con el metodo recursivo
+                    System.out.println("Lista al reves");
+                    imprimirListaReves(inicioFila);
+                    break;
+
+                case 5:
+                    //imprimos en orden
+                    System.out.println("La fila en orden");
+                    imprimirLista(inicioFila);
+                    break;
+
+                case 6:
+                    //mostramos a los clientes que no se sacaron de la fila
+
                     int contador = 0;
                     while(inicioFila != null){
                         contador ++;
                         inicioFila = inicioFila.vieneAtras;
                     }
                     System.out.println("Las personas sin atender son: "+contador);
-                        break;
-                case 5:
-                    System.out.println("Lista al reves");
-                    imprimirListaReves(inicioFila);
                     break;
-                case 6:
-                    System.out.println("Salir de la fila");
-                    break;
+
 
             }
         }
-        while (opcion != 5);
+        while (opcion != 6);
     }
     public static void imprimirLista(Persona persona){
         if(persona != null){
